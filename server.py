@@ -1,18 +1,14 @@
 from flask import Flask, render_template, url_for
-app = Flask(__name__)
-print(__name__)
 
+def flask_app():
+    app = Flask(__name__)
 
-@app.route('/')
-def my_home():
-    return render_template('index.html')
+    @app.route('/')
+    def my_home():
+        return render_template('index.html')
 
+    return app
 
-@app.route('/about.html')
-def about():
-    return render_template('about.html')
-
-
-@app.route('/blog/2020/dogs')
-def blog2():
-    return 'This is my dog'
+if __name__ == '__main__':
+    app = flask_app()
+    app.run(debug=True, host='0.0.0.0')
